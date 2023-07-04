@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "react-refresh", "prettier"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -17,6 +17,18 @@
                 "onlyDependOnLibsWithTags": ["*"]
               }
             ]
+          }
+        ],
+        "react-refresh/only-export-components": "warn",
+        "curly": 2,
+        "prettier/prettier": [
+          "warn",
+          {
+            "semi": true,
+            "singleQuote": true,
+            "trailingComma": "all",
+            "tabWidth": 4,
+            "printWidth": 64
           }
         ]
       }
