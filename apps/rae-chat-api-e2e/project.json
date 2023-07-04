@@ -1,14 +1,20 @@
 {
   "name": "rae-chat-api-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": ["rae-chat-api"],
+  "sourceRoot": "apps/rae-chat-api-e2e/src",
+  "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "executor": "@nx/cypress:cypress",
       "options": {
-        "jestConfig": "apps/rae-chat-api-e2e/jest.config.ts",
-        "passWithNoTests": true
+        "cypressConfig": "apps/rae-chat-api-e2e/cypress.config.ts",
+        "devServerTarget": "rae-chat-api:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "rae-chat-api:serve:production"
+        }
       }
     },
     "lint": {
@@ -18,5 +24,7 @@
         "lintFilePatterns": ["apps/rae-chat-api-e2e/**/*.{js,ts}"]
       }
     }
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["rae-chat-api"]
 }

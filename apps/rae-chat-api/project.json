@@ -1,49 +1,45 @@
 {
   "name": "rae-chat-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/rae-chat-api/src",
+  "sourceRoot": "apps/rae-chat-api",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apps/rae-chat-api/api",
-        "outputFileName": "index.js",
-        "main": "apps/rae-chat-api/src/api/index.ts",
-        "tsConfig": "apps/rae-chat-api/tsconfig.app.json",
-        "assets": ["apps/rae-chat-api/src/assets"],
-        "isolatedConfig": true,
-        "webpackConfig": "apps/rae-chat-api/webpack.config.js"
+        "outputPath": "dist/apps/rae-chat-api"
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "outputPath": "apps/rae-chat-api"
+        },
         "production": {}
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
+      "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "rae-chat-api:build"
+        "buildTarget": "rae-chat-api:build",
+        "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "rae-chat-api:build:development"
+          "buildTarget": "rae-chat-api:build:development",
+          "dev": true
         },
         "production": {
-          "buildTarget": "rae-chat-api:build:production"
+          "buildTarget": "rae-chat-api:build:production",
+          "dev": false
         }
       }
     },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "export": {
+      "executor": "@nx/next:export",
       "options": {
-        "lintFilePatterns": ["apps/rae-chat-api/**/*.ts"]
+        "buildTarget": "rae-chat-api:build:production"
       }
     },
     "test": {
@@ -58,6 +54,13 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rae-chat-api/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
