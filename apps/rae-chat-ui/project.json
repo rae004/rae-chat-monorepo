@@ -24,7 +24,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "rae-chat-ui:build"
+        "buildTarget": "rae-chat-ui:build",
+        "proxyConfig": "apps/rae-chat-ui/proxy.conf.json"
       },
       "configurations": {
         "development": {

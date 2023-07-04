@@ -1,0 +1,64 @@
+{
+  "name": "rae-chat-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rae-chat-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/rae-chat-api",
+        "main": "apps/rae-chat-api/src/main.ts",
+        "tsConfig": "apps/rae-chat-api/tsconfig.app.json",
+        "assets": ["apps/rae-chat-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/rae-chat-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rae-chat-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rae-chat-api:build:development"
+        },
+        "production": {
+          "buildTarget": "rae-chat-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rae-chat-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/rae-chat-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
