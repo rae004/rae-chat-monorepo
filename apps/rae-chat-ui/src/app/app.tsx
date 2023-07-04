@@ -1,14 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ReactElement } from 'react';
 import styles from './app.module.css';
 
-import NxWelcome from './nx-welcome';
-
-export function App() {
-  return (
-    <div>
-      <NxWelcome title="rae-chat-ui" />
-    </div>
-  );
+export function App(): ReactElement {
+    return (
+        <div className={styles.title}>
+            Welcome rae-chat-ui{' '}
+            <span role={'img'} aria-label={'Waving hand emoji'}>
+                👋
+            </span>
+        </div>
+    );
 }
 
 export default App;
