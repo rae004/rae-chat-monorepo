@@ -1,21 +1,17 @@
 import { ReactElement, useEffect, useState } from 'react';
 import styles from './app.module.css';
-import dotenv from 'dotenv';
-dotenv.config();
+import { baseApiUrl } from '../lib/constants';
 
 export function App(): ReactElement {
-    const [title, setTitle] = useState<string>('');
-    console.log('our title: ', process.env.NX_API_URL);
+    const [title, setTitle] = useState<string>('Hello!');
+
     useEffect(() => {
         const fetchResult = async (): Promise<void> => {
-            const result = await fetch(
-                `${process.env.NX_API_URL}/api`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+            const result = await fetch(`${baseApiUrl}/api`, {
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-            );
+            });
             const json = await result.json();
 
             setTitle(json.message);
