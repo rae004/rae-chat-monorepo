@@ -1,26 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Rae Chat UI > should have a greeting as the title 1`] = `
-<div>
-  <div
-    class="_title_1346f5"
-  >
-     
-    <span
-      aria-label="Waving hand emoji"
-      role="img"
-    >
-      👋
-    </span>
-  </div>
-</div>
-`;
-
 exports[`Rae Chat UI > should match last snapshot 1`] = `
 <div>
   <div
     class="_title_1346f5"
   >
+    Hello!
      
     <span
       aria-label="Waving hand emoji"
