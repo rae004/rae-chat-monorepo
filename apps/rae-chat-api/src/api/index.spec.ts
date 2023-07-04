@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from './main';
+import app from './index';
 
 describe('Starter Test', () => {
     test('GET /api', (done) => {

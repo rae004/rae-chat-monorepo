@@ -11,8 +11,9 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/rae-chat-api",
-        "main": "apps/rae-chat-api/src/main.ts",
+        "outputPath": "dist/apps/rae-chat-api/api",
+        "outputFileName": "index.js",
+        "main": "apps/rae-chat-api/src/api/index.ts",
         "tsConfig": "apps/rae-chat-api/tsconfig.app.json",
         "assets": ["apps/rae-chat-api/src/assets"],
         "isolatedConfig": true,

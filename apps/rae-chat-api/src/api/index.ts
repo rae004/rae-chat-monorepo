@@ -22,7 +22,6 @@ app.options('/api', cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.get('/api', cors(corsOptions), (req, res) => {
-    console.log('our request: ', req.headers);
     res.send({ message: 'Welcome to rae-chat-api!' });
 });
 
