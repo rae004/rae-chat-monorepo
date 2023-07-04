@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import express from 'express';
 import cors from 'cors';
 import * as path from 'path';
@@ -22,6 +17,11 @@ app.options('/api', cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.get('/api', cors(corsOptions), (req, res) => {
+    res.setHeader(
+        'Cache-Control',
+        's-max-age=1, stale-while-revalidate',
+    );
+    res.setHeader('Content-Type', 'application/json');
     res.send({ message: 'Welcome to rae-chat-api!' });
 });
 
