@@ -1,13 +1,15 @@
 import { ReactElement, useEffect, useState } from 'react';
 import styles from './app.module.css';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export function App(): ReactElement {
     const [title, setTitle] = useState<string>('');
-    console.log('our title: ', title);
+    console.log('our title: ', process.env.NX_API_URL);
     useEffect(() => {
         const fetchResult = async (): Promise<void> => {
             const result = await fetch(
-                'http://localhost:3333/api',
+                `${process.env.NX_API_URL}/api`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
