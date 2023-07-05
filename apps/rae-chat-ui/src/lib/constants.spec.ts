@@ -14,7 +14,7 @@ describe('Test Constants', () => {
     });
 
     it('should return base url without port number if port number is not defined.', () => {
-        const baseUrl = getBaseApiUrl(testBaseHost);
+        const baseUrl = getBaseApiUrl(testBaseHost, null);
         expect(baseUrl).toBe(testBaseHost);
     });
 });
