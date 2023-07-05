@@ -1,9 +1,10 @@
 import { ReactElement, useEffect, useState } from 'react';
 import styles from './app.module.css';
-import { baseApiUrl } from '../lib/constants';
+import { getBaseApiUrl } from '../lib/constants';
 
 export function App(): ReactElement {
     const [title, setTitle] = useState<string>('Hello!');
+    const baseApiUrl = getBaseApiUrl();
 
     useEffect(() => {
         const fetchResult = async (): Promise<void> => {
