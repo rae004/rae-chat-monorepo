@@ -7,11 +7,15 @@ export function App(): ReactElement {
 
     useEffect(() => {
         const fetchResult = async (): Promise<void> => {
-            const result = await fetch(`${baseApiUrl}/api`, {
-                headers: {
-                    'Content-Type': 'application/json',
+            const result = await fetch(
+                `${baseApiUrl}/api/hello`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                 },
-            });
+            );
+            console.log('our result', result);
             const json = await result.json();
 
             setTitle(json.message);
