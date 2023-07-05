@@ -9,7 +9,7 @@ describe('Test', () => {
     });
 
     it('Should throw an error with no Api Key', () => {
-        expect(() => getAiConfig(undefined)).toThrow(
+        expect(() => getAiConfig('')).toThrow(
             'Missing OpenAI API key',
         );
     });
