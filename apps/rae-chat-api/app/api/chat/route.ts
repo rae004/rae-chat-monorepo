@@ -2,9 +2,14 @@ import { OpenAIApi } from 'openai-edge';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { getAiConfig } from './getAiConfig';
 
-const config = getAiConfig();
+let openai: OpenAIApi;
 
-const openai = new OpenAIApi(config);
+try {
+    const config = getAiConfig();
+    openai = new OpenAIApi(config);
+} catch (e) {
+    console.error('Error caught getting Open AI config: ', e);
+}
 
 export const runtime = 'edge';
 
