@@ -1,9 +1,9 @@
-import { Configuration, OpenAIApi } from 'openai-edge';
+import { OpenAIApi } from 'openai-edge';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { getAiConfig } from './getAiConfig';
 
-const config = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+const config = getAiConfig();
+
 const openai = new OpenAIApi(config);
 
 export const runtime = 'edge';
