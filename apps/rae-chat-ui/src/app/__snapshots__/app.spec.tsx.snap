@@ -33,11 +33,6 @@ exports[`Rae Chat UI > should match last snapshot 1`] = `
       class="rcw-launcher"
       type="button"
     >
-      <span
-        class="rcw-badge"
-      >
-        2
-      </span>
       <img
         alt="Close chat"
         class="rcw-open-launcher"
