@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { Widget } from 'react-chat-widget';
+import { useEffect, useState } from 'react';
+import { addResponseMessage, Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-
 const ChatWidget = () => {
     const title = 'RAE Chat';
     const subtitle = 'Your friendly-ish chat-bot';
@@ -17,13 +16,18 @@ const ChatWidget = () => {
 
     const handleNewUserMessage = (message: string) => {
         const newUserMessage = message as never;
-
-        setUserChatMessages([
+        const newUserMessages = [
             ...userChatMessages,
             newUserMessage,
-        ]);
+        ];
+
+        setUserChatMessages(newUserMessages);
         // Now send the message throught the backend API
     };
+
+    useEffect(() => {
+        addResponseMessage('Welcome to this awesome chat!');
+    }, []);
 
     return (
         <Widget
