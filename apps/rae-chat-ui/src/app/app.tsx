@@ -1,7 +1,8 @@
-import { ReactElement, useEffect, useState } from 'react';
 import styles from './app.module.css';
+import { ReactElement, useEffect, useState } from 'react';
 import { getBaseApiUrl } from '../lib/constants';
-import ChatWidget from '../components/chatWidget.';
+import ChatThread from '../components/ChatThread';
+import ChatWidget from '../components/Widget';
 
 export function App(): ReactElement {
     const [title, setTitle] = useState<string>('Hello!');
@@ -15,11 +16,11 @@ export function App(): ReactElement {
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                    method: 'GET',
                 },
             );
             console.log('our result', result);
             const json = await result.json();
-
             setTitle(json.message);
         };
         fetchResult();
@@ -36,6 +37,7 @@ export function App(): ReactElement {
                     👋
                 </span>
             </div>
+            <ChatThread />
             <ChatWidget />
         </>
     );
