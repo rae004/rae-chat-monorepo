@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rae-chat-monorepo/rae-plugin": ["libs/rae-plugin/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
