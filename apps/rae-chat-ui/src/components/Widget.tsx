@@ -13,7 +13,6 @@ const ChatWidget = () => {
     const subtitle = 'Your friendly-ish chat-bot';
     const initialAgentMessage =
         'Type your questions; an agent will be with you momentarily.';
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [, setChatWindowOpen] = useState(true);
     const [userChatMessages, setUserChatMessages] = useState(
         [],
