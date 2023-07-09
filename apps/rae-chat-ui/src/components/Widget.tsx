@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import {
     addResponseMessage,
     Widget,
@@ -11,6 +11,8 @@ const ChatWidget = () => {
     const baseApiUrl = getBaseApiUrl();
     const title = 'RAE Chat';
     const subtitle = 'Your friendly-ish chat-bot';
+    const initialAgentMessage =
+        'Type your questions; an agent will be with you momentarily.';
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [, setChatWindowOpen] = useState(true);
     const [userChatMessages, setUserChatMessages] = useState(
@@ -70,6 +72,11 @@ const ChatWidget = () => {
 
         setUserChatMessages(newUserMessages);
     };
+
+    useEffect(() => {
+        addResponseMessage(initialAgentMessage);
+        setResponseChatMessages(initialAgentMessage as never);
+    }, []);
 
     return (
         <Widget
