@@ -37,7 +37,7 @@ export function App(): ReactElement {
                     👋
                 </span>
             </div>
-            <ChatThread />
+            {/*<ChatThread />*/}
             <ChatWidget />
         </>
     );

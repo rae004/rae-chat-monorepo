@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { addResponseMessage, Widget } from 'react-chat-widget';
+import {
+    addResponseMessage,
+    Widget,
+    toggleMsgLoader,
+} from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import { getBaseApiUrl } from '../lib/constants';
 import getChatGptMessagesFromResponse from '../lib/getChatGptMessagesFromResponse';
@@ -30,6 +34,7 @@ const ChatWidget = () => {
 
         const fetchResult = async (): Promise<any[]> => {
             if (message.length) {
+                toggleMsgLoader();
                 const result = await fetch(
                     `${baseApiUrl}/api/hello`,
                     {
@@ -46,12 +51,16 @@ const ChatWidget = () => {
             }
             return [];
         };
-        fetchResult().then((res) => {
-            for (const message of res) {
-                addResponseMessage(message.content);
-                setResponseChatMessages(message.content);
-            }
-        });
+        fetchResult()
+            .then((res) => {
+                for (const message of res) {
+                    addResponseMessage(message.content);
+                    setResponseChatMessages(message.content);
+                }
+            })
+            .finally(() => {
+                toggleMsgLoader();
+            });
 
         const newUserMessage = message as never;
         const newUserMessages = [
