@@ -23,7 +23,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "rae-chat-users:build",
-        "port": 4202,
+        "port": 4203,
         "dev": true
       },
       "configurations": {

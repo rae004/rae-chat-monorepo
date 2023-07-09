@@ -1,4 +1,5 @@
-import './global.css';
+import { NextAuthProvider } from './providers';
+import { ReactNode } from 'react';
 
 export const metadata = {
     title: 'Welcome to rae-chat-users',
@@ -8,11 +9,13 @@ export const metadata = {
 export default function RootLayout({
     children,
 }: {
-    children: React.ReactNode;
+    children: ReactNode;
 }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <NextAuthProvider>{children}</NextAuthProvider>
+            </body>
         </html>
     );
 }
