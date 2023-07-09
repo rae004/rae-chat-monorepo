@@ -6,7 +6,7 @@
     "prepare": "husky install",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
-    "tsc": "nx run-many -t rae-tsc"
+    "build": "nx run-many -t build"
   },
   "private": true,
   "dependencies": {

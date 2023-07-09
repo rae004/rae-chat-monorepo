@@ -1,8 +1,8 @@
 import styles from './app.module.css';
 import { ReactElement, useEffect, useState } from 'react';
 import { getBaseApiUrl } from '../lib/constants';
-import ChatThread from '../components/ChatThread';
 import ChatWidget from '../components/Widget';
+import Cta from '../components/Cta';
 
 export function App(): ReactElement {
     const [title, setTitle] = useState<string>('Hello!');
@@ -19,7 +19,7 @@ export function App(): ReactElement {
                     method: 'GET',
                 },
             );
-            console.log('our result', result);
+
             const json = await result.json();
             setTitle(json.message);
         };
@@ -27,19 +27,11 @@ export function App(): ReactElement {
     }, []);
 
     return (
-        <>
-            <div className={styles.title}>
-                {title}{' '}
-                <span
-                    role={'img'}
-                    aria-label={'Waving hand emoji'}
-                >
-                    👋
-                </span>
-            </div>
+        <div className={styles.app}>
+            <Cta {...{ title }} />
             {/*<ChatThread />*/}
             <ChatWidget />
-        </>
+        </div>
     );
 }
 

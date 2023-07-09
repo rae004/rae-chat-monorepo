@@ -6,6 +6,16 @@ import viteTsConfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
     cacheDir: '../../node_modules/.vite/rae-chat-ui',
 
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/[name].js`,
+                chunkFileNames: `assets/[name].js`,
+                assetFileNames: `assets/[name].[ext]`,
+            },
+        },
+    },
+
     server: {
         port: 4201,
         host: 'localhost',
