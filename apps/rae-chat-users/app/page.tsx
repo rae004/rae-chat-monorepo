@@ -29,12 +29,8 @@ export default async function Index() {
             }}
         >
             <div>
-                <LoginButton />
-                <RegisterButton />
-                <LogoutButton />
-                <ProfileButton />
                 <h1>Server Session</h1>
-                <pre>{JSON.stringify(session)}</pre>
+                <pre>{JSON.stringify(session, null, 2)}</pre>
 
                 <UserSession />
             </div>

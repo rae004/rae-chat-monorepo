@@ -8,7 +8,7 @@ const UserSession = () => {
     return (
         <>
             <h1>Client Session</h1>
-            <pre>{JSON.stringify(session)}</pre>
+            <pre>{JSON.stringify(session, null, 2)}</pre>
         </>
     );
 };

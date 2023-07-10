@@ -34,5 +34,17 @@ export const LogoutButton = () => {
 };
 
 export const ProfileButton = () => {
-    return <Link href="/profile">Profile</Link>;
+    return (
+        <Link style={{ marginRight: 10 }} href="/profile">
+            Profile
+        </Link>
+    );
+};
+
+export const HomeButton = () => {
+    return (
+        <Link style={{ marginRight: 10 }} href="/">
+            Home
+        </Link>
+    );
 };

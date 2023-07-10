@@ -1,5 +1,12 @@
 import { NextAuthProvider } from './providers';
 import { ReactNode } from 'react';
+import {
+    HomeButton,
+    LoginButton,
+    LogoutButton,
+    ProfileButton,
+    RegisterButton,
+} from '../components/Buttons';
 
 export const metadata = {
     title: 'Welcome to rae-chat-users',
@@ -14,6 +21,19 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <nav
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <HomeButton />
+                    <RegisterButton />
+                    <ProfileButton />
+                    <LoginButton />
+                    <LogoutButton />
+                </nav>
                 <NextAuthProvider>{children}</NextAuthProvider>
             </body>
         </html>
