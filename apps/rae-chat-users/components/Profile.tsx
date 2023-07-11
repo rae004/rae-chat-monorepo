@@ -12,9 +12,11 @@ export default async function ProfileComponent({
             email,
         },
         include: {
-            profile: true,
+            org: true,
         },
     });
+
+    // todo find better way to exclude password.
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     delete user['password'];
@@ -28,10 +30,13 @@ export default async function ProfileComponent({
         >
             <h1>User Profile:</h1>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            {user && user['profile'] && (
-                <pre>
-                    {JSON.stringify(user['profile'], null, 2)}
-                </pre>
+            {user && user['org'] && (
+                <>
+                    <h2>User Organization:</h2>
+                    <pre>
+                        {JSON.stringify(user['org'], null, 2)}
+                    </pre>
+                </>
             )}
         </div>
     );
