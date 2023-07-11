@@ -12,7 +12,7 @@ export default async function ProfileComponent({
             email,
         },
         include: {
-            org: true,
+            apiKeys: true,
         },
     });
 
@@ -30,14 +30,6 @@ export default async function ProfileComponent({
         >
             <h1>User Profile:</h1>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            {user && user['org'] && (
-                <>
-                    <h2>User Organization:</h2>
-                    <pre>
-                        {JSON.stringify(user['org'], null, 2)}
-                    </pre>
-                </>
-            )}
         </div>
     );
 }
