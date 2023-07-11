@@ -24,7 +24,7 @@ export async function GET() {
 export async function POST(req: Request) {
     const { searchParams } = new URL(req.url);
     const key = searchParams.get('apiKey') || 'no-key-found';
-    const validKey = checkIfValidKey(key);
+    const validKey = await checkIfValidKey(key);
 
     if (validKey) {
         const { messages } = await req.json();
