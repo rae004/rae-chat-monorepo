@@ -4,3 +4,7 @@ export const getBaseApiUrl = (
 ) => {
     return basePort ? `${baseHost}:${basePort}` : baseHost;
 };
+
+export const getApiKey = (): string => {
+    return 'Fy57DpAB9fKyNkOKhNiHtngvjg4K2hXSJzGQZaHnuYo';
+};

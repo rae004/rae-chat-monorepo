@@ -25,9 +25,9 @@ model UserApiKey {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   description String?
-  key         String
+  key         String        @unique
   keyType     String
-  user        User     @relation(fields: [userId], references: [id])
+  user        User          @relation(fields: [userId], references: [id])
   userId      Int
 
   @@index([userId])

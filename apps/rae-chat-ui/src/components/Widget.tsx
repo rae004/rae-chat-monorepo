@@ -5,10 +5,11 @@ import {
     toggleMsgLoader,
 } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import { getBaseApiUrl } from '../lib/constants';
+import { getApiKey, getBaseApiUrl } from '../lib/constants';
 import getChatGptMessagesFromResponse from '../lib/getChatGptMessagesFromResponse';
 const ChatWidget = () => {
     const baseApiUrl = getBaseApiUrl();
+    const apiKey = getApiKey();
     const title = 'RAE Chat';
     const subtitle = 'Your friendly-ish chat-bot';
     const initialAgentMessage =
@@ -37,7 +38,7 @@ const ChatWidget = () => {
             if (message.length) {
                 toggleMsgLoader();
                 const result = await fetch(
-                    `${baseApiUrl}/api/hello`,
+                    `${baseApiUrl}/api/hello?apiKey=${apiKey}`,
                     {
                         headers: {
                             'Content-Type': 'application/json',
