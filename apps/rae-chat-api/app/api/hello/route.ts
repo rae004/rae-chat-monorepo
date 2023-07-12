@@ -24,7 +24,10 @@ export async function GET() {
 export async function POST(req: Request) {
     const { searchParams } = new URL(req.url);
     const key = searchParams.get('apiKey') || 'no-key-found';
-    const validKey = await checkIfValidKey(key);
+    const userEmail =
+        searchParams.get('apiUserEmail') ||
+        'no-user-email-found';
+    const validKey = await checkIfValidKey(key, userEmail);
 
     if (validKey) {
         const { messages } = await req.json();
