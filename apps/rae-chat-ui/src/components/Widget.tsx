@@ -5,15 +5,18 @@ import {
     toggleMsgLoader,
 } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import { getApiKey, getBaseApiUrl } from '../lib/constants';
+import {
+    getRaeChatUserDetails,
+    getBaseApiUrl,
+} from '../lib/constants';
 import getChatGptMessagesFromResponse from '../lib/getChatGptMessagesFromResponse';
 const ChatWidget = () => {
-    const baseApiUrl = getBaseApiUrl();
-    const apiKey = getApiKey();
     const title = 'RAE Chat';
     const subtitle = 'Your friendly-ish chat-bot';
     const initialAgentMessage =
         'Type your questions; an agent will be with you momentarily.';
+    const baseApiUrl = getBaseApiUrl();
+    const { apiKey, apiUserEmail } = getRaeChatUserDetails();
     const [, setChatWindowOpen] = useState(true);
     const [userChatMessages, setUserChatMessages] = useState(
         [],
@@ -38,7 +41,7 @@ const ChatWidget = () => {
             if (message.length) {
                 toggleMsgLoader();
                 const result = await fetch(
-                    `${baseApiUrl}/api/hello?apiKey=${apiKey}`,
+                    `${baseApiUrl}/api/hello?apiKey=${apiKey}&apiUserEmail=${apiUserEmail}`,
                     {
                         headers: {
                             'Content-Type': 'application/json',

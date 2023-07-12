@@ -5,6 +5,9 @@ export const getBaseApiUrl = (
     return basePort ? `${baseHost}:${basePort}` : baseHost;
 };
 
-export const getApiKey = (): string => {
-    return 'Fy57DpAB9fKyNkOKhNiHtngvjg4K2hXSJzGQZaHnuYo';
+export const getRaeChatUserDetails = (
+    apiKey = import.meta.env.VITE_USER_API_KEY,
+    apiUserEmail = import.meta.env.VITE_USER_API_EMAIL,
+): { apiKey: string; apiUserEmail: string } => {
+    return { apiKey, apiUserEmail };
 };
