@@ -9,26 +9,26 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  password  String
-  name      String
-  username  String?   @unique
-  role      Role      @default(USER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  apiKeys   UserApiKey[]
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  password    String
+  name        String
+  username    String?      @unique
+  role        Role         @default(USER)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userApiKeys UserApiKey[]
 }
 
 model UserApiKey {
-  id          Int           @id @default(autoincrement())
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   description String?
-  key         String        @unique
+  key         String   @unique
   keyType     String
-  user        User          @relation(fields: [userId], references: [id])
   userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
