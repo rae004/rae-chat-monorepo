@@ -12,14 +12,14 @@ export default async function ProfileComponent({
             email,
         },
         include: {
-            apiKeys: true,
+            userApiKeys: true,
         },
     });
 
-    // todo find better way to exclude password.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    delete user['password'];
+    const displayUser = {
+        ...user,
+        password: '<HIDDEN>',
+    };
 
     return (
         <div
@@ -29,7 +29,7 @@ export default async function ProfileComponent({
             }}
         >
             <h1>User Profile:</h1>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <pre>{JSON.stringify(displayUser, null, 2)}</pre>
         </div>
     );
 }

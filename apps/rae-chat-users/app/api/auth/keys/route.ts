@@ -21,22 +21,23 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
     const { email } = await req.json();
-    const keyResults = await createApiKeys();
+    const apiKey = await createApiKeys();
 
-    if (keyResults) {
+    if (apiKey) {
         await prisma.userApiKey.create({
             data: {
-                key: keyResults,
+                key: apiKey,
                 keyType: 'API_KEY',
                 user: {
                     connect: { email },
                 },
             },
         });
+
+        return NextResponse.json({ apiKey: apiKey });
     }
 
-    return new Response(
-        JSON.stringify({ apiKey: keyResults }),
-        { headers: { 'Content-Type': 'application/json' } },
-    );
+    return NextResponse.json({
+        error: 'Could not create api key',
+    });
 }
