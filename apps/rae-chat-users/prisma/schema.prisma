@@ -21,14 +21,15 @@ model User {
 }
 
 model UserApiKey {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   description String?
-  key         String   @unique
+  key         String    @unique
   keyType     String
+  isActive    Boolean   @default(true)
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }

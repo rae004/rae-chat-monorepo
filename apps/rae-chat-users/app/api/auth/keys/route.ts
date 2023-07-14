@@ -2,7 +2,7 @@ import { createApiKeys } from '../../../../lib/apiKeys';
 import { prisma } from '../../../../lib/prisma';
 import { NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
+export async function GET(req: Request, res: Response) {
     const { searchParams } = new URL(req.url);
     const key = searchParams.get('key') || 'no_key_found';
     const userEmail =
@@ -14,9 +14,20 @@ export async function GET(req: Request) {
     const userKey = user?.userApiKeys.find(
         ({ key: userKey }) => userKey === key,
     );
-    const keyValid = !!userKey;
+    console.log('our user key is:  ', userKey);
+    const keyValid =
+        !!userKey && userKey.isActive && userKey.key === key;
+    // const keyValid = false;
 
-    return NextResponse.json({ keyValid });
+    return keyValid
+        ? NextResponse.json({ keyValid })
+        : new Response('Unauthorized... Stay OUT!', {
+              status: 401,
+              headers: {
+                  'WWW-Authenticate':
+                      'Basic realm="Secure Area"',
+              },
+          });
 }
 
 export async function POST(req: Request) {

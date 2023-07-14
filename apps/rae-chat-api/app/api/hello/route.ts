@@ -59,10 +59,10 @@ export async function POST(req: Request) {
         return NextResponse.json({ data });
     }
 
-    return NextResponse.json(
-        {
-            message: 'Not Authorized: API Key Not Valid',
+    return new Response('Unauthorized... Stay OUT!', {
+        status: 401,
+        headers: {
+            'WWW-Authenticate': 'Basic realm="Secure Area"',
         },
-        { status: 401 },
-    );
+    });
 }
