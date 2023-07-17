@@ -16,8 +16,8 @@ export const runtime = 'edge';
 
 export async function GET() {
     return NextResponse.json(
-        { message: 'Hello, from rae-chat-api NextJs API!' },
-        { status: 200 },
+        { message: 'Unauthorized.' },
+        { status: 401 },
     );
 }
 
