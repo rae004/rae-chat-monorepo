@@ -41,7 +41,7 @@ const ChatWidget = () => {
             if (message.length) {
                 toggleMsgLoader();
                 const result = await fetch(
-                    `${baseApiUrl}/api/hello?apiKey=${apiKey}&apiUserEmail=${apiUserEmail}`,
+                    `${baseApiUrl}/api/chat?apiKey=${apiKey}&apiUserEmail=${apiUserEmail}`,
                     {
                         headers: {
                             'Content-Type': 'application/json',
