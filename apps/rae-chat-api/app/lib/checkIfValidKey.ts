@@ -3,7 +3,7 @@ const checkIfValidKey = async (
     email: string,
 ): Promise<boolean> => {
     const baseUrl =
-        process.env.RAE_CHAT_USERS_API ||
+        process.env.RAE_CHAT_USERS_API_URL ||
         'http://localhost:3000';
     const apiUrl = `${baseUrl}/api/auth/keys?key=${key}&email=${email}`;
 
@@ -18,12 +18,11 @@ const checkIfValidKey = async (
 
             return keyValid;
         }
-
-        return false;
     } catch (error) {
         console.log('our error', error);
-        return false;
     }
+
+    return false;
 };
 
 export default checkIfValidKey;
