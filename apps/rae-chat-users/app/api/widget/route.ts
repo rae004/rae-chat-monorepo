@@ -4,7 +4,7 @@ import {
     createBucket,
     deleteBucket,
     doesBucketExist,
-} from '../../../lib/aws';
+} from '../../../lib/aws/s3Sdk';
 
 export const runtime = 'edge';
 
