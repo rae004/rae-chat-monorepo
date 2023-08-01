@@ -5,8 +5,9 @@ import {
     deleteBucket,
     doesBucketExist,
 } from '../../../lib/aws/s3Sdk';
+import zipDirectory from '../../../lib/zipDirectory';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const logCaughtErrorFromAws = (e: any) => {
     const { statusCode, reason } = e.$response;
@@ -62,21 +63,36 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     console.log('our body! ', body);
+    const cwd = process.cwd();
+    console.log('our cwd ', cwd);
 
     try {
-        const result = await createBucket();
-        // const result = await doesBucketExist();
-        console.log('create bucket result: ', result);
+        const zippedPathToPut = await zipDirectory(
+            `${cwd}/widgetApp`,
+            'widgetApp.zip',
+        );
+        console.log(
+            'our current working dir: ',
+            zippedPathToPut,
+        );
     } catch (e) {
-        logCaughtErrorFromAws(e);
+        console.log('our caught error in zip directory! ', e);
     }
 
-    try {
-        const result = await doesBucketExist();
-        console.log('head bucket result: ', result);
-    } catch (e) {
-        logCaughtErrorFromAws(e);
-    }
+    // try {
+    //     const result = await createBucket();
+    //     // const result = await doesBucketExist();
+    //     console.log('create bucket result: ', result);
+    // } catch (e) {
+    //     logCaughtErrorFromAws(e);
+    // }
+    //
+    // try {
+    //     const result = await doesBucketExist();
+    //     console.log('head bucket result: ', result);
+    // } catch (e) {
+    //     logCaughtErrorFromAws(e);
+    // }
 
     return NextResponse.json(
         {
@@ -107,12 +123,12 @@ export async function DELETE(req: Request) {
         'no-bucket-name-found';
     console.log('our bucket name:  ', bucketName);
 
-    try {
-        const result = await deleteBucket(bucketName);
-        console.log('our results: ', result);
-    } catch (e) {
-        logCaughtErrorFromAws(e);
-    }
+    // try {
+    //     const result = await deleteBucket(bucketName);
+    //     console.log('our results: ', result);
+    // } catch (e) {
+    //     logCaughtErrorFromAws(e);
+    // }
 
     return NextResponse.json(
         {

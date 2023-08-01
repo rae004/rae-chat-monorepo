@@ -15,6 +15,7 @@ export default async function Index() {
             }}
         >
             <div>
+                <h1>Hi Bob!!</h1>
                 <h1>Server Session</h1>
                 <pre>{JSON.stringify(session, null, 2)}</pre>
 
